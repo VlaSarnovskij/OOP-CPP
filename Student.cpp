@@ -6,14 +6,13 @@
 
 using namespace std;
 
-class StudentValidator {
-    public:
-        static void validateAge(int age) {
-            if (age <= 0) throw invalid_argument("Age must be positive");
-        }
-        static void validateScholarship(double scholarship) {
-            if (scholarship < 0) throw invalid_argument("Scholarship cannot be negative");
-        }
+struct NumberValidator {
+   static bool isPositive(int value) {
+        return value > 0;
+    }
+    static bool isNonNegative(double value) {
+        return value >= 0;
+    }
 };
 
 class Student {
@@ -26,6 +25,14 @@ class Student {
         int age;
         double scholarship;
 
+        void init(string name, string surname, int age, double scholarship){
+            setName(name);
+            setSurname(surname);
+            setAge(age);
+            setScholarship(scholarship); 
+            id = ++lastId;
+            ++objectCount;
+        }
     public:
         // Constructors
         Student(string name, string surname, int age, double scholarship) {
@@ -40,15 +47,6 @@ class Student {
             --objectCount;
         }
 
-        void init(string name, string surname, int age, double scholarship){
-            setName(name);
-            setSurname(surname);
-            setAge(age);
-            setScholarship(scholarship); 
-            id = ++lastId;
-            ++objectCount;
-        }
-
         // Setters
         void setName(string name) { 
             this->name = name;
@@ -57,11 +55,13 @@ class Student {
             this->surname = surname; 
         }
         void setAge(int age) {
-            StudentValidator::validateAge(age);
+            if (!NumberValidator::isPositive(age)) 
+                throw invalid_argument("Age must be positive");
             this->age = age;
         }
         void setScholarship(double scholarship) {
-            StudentValidator::validateScholarship(scholarship);
+            if (!NumberValidator::isNonNegative(scholarship)) 
+                throw invalid_argument("Scholarship cannot be negative");
             this->scholarship = scholarship;
         }
 
