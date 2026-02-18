@@ -6,6 +6,16 @@
 
 using namespace std;
 
+class StudentValidator {
+    public:
+        static void validateAge(int age) {
+            if (age <= 0) throw invalid_argument("Age must be positive");
+        }
+        static void validateScholarship(double scholarship) {
+            if (scholarship < 0) throw invalid_argument("Scholarship cannot be negative");
+        }
+};
+
 class Student {
     private:
         static int lastId;
@@ -29,7 +39,7 @@ class Student {
         ~Student() {
             --objectCount;
         }
-        
+
         void init(string name, string surname, int age, double scholarship){
             setName(name);
             setSurname(surname);
@@ -47,11 +57,11 @@ class Student {
             this->surname = surname; 
         }
         void setAge(int age) {
-            if (age <= 0) throw invalid_argument("Age must be positive");
+            StudentValidator::validateAge(age);
             this->age = age;
         }
         void setScholarship(double scholarship) {
-            if (scholarship < 0) throw invalid_argument("Scholarship cannot be negative");
+            StudentValidator::validateScholarship(scholarship);
             this->scholarship = scholarship;
         }
 
