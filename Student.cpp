@@ -8,10 +8,10 @@ using namespace std;
 
 class Student {
     private:
-        int id;
         static int lastId;
         static int objectCount;
 
+        int id;
         string name, surname;
         int age;
         double scholarship;
@@ -29,6 +29,7 @@ class Student {
         ~Student() {
             --objectCount;
         }
+        
         void init(string name, string surname, int age, double scholarship){
             setName(name);
             setSurname(surname);
@@ -55,13 +56,24 @@ class Student {
         }
 
         // Getters
-        static int getObjectCount() { return objectCount; }
-
-        int getId() { return id; }   
-        string getName() { return name; }
-        string getSurname() { return surname; }
-        int getAge() { return age; }
-        double getScholarship() { return scholarship; }
+        static int getObjectCount() { 
+            return objectCount; 
+        }
+        int getId() { 
+            return id; 
+        }   
+        string getName() { 
+            return name; 
+        }
+        string getSurname() { 
+            return surname; 
+        }
+        int getAge() { 
+            return age; 
+        }
+        double getScholarship() { 
+            return scholarship; 
+        }
 
 
         string toString() {
@@ -79,7 +91,6 @@ int main() {
 
     // test5 initial state
     assert(Student::getObjectCount() == 0);
-
     {
         // test1
         Student s1("John", "Doe", 20, 1000);
