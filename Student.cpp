@@ -21,17 +21,27 @@ class Student {
         static int objectCount;
 
         int id;
-        string name, surname;
+        string n, s;
         int age;
         double scholarship;
 
     public:
         // Constructors
-        Student(string name, string surname, int age, double scholarship) {
-            init(name, surname, age, scholarship);
+        Student(string n, string s, int age, double scholarship) {
+            setName(n);
+            setSurname(s);
+            setAge(age);
+            setScholarship(scholarship); 
+            id = ++lastId;
+            ++objectCount;
         }
-        Student(string name, string surname, int age) {
-            init(name, surname, age, 0.0);
+        Student(string n, string s, int age) {
+            setName(n);
+            setSurname(s);
+            setAge(age);
+            setScholarship(0.0); 
+            id = ++lastId;
+            ++objectCount;
         }
 
         // Destructor
@@ -40,22 +50,21 @@ class Student {
         }
 
     private:
-        void init(string name, string surname, int age, double scholarship){
-            setName(name);
-            setSurname(surname);
+        void init(string n, string s, int age, double scholarship){
+            setName(n);
+            setSurname(s);
             setAge(age);
             setScholarship(scholarship); 
             id = ++lastId;
             ++objectCount;
         }
-        
     public:
         // Setters
-        void setName(string name) { 
-            this->name = name;
+        void setName(string n) { 
+            this->n = n;
         }
-        void setSurname(string surname) { 
-            this->surname = surname; 
+        void setSurname(string s) { 
+            this->s = s; 
         }
         void setAge(int age) {
             if (!NumberValidator::isPositive(age)) 
@@ -69,24 +78,12 @@ class Student {
         }
 
         // Getters
-        static int getObjectCount() { 
-            return objectCount; 
-        }
-        int getId() { 
-            return id; 
-        }   
-        string getName() { 
-            return name; 
-        }
-        string getSurname() { 
-            return surname; 
-        }
-        int getAge() { 
-            return age; 
-        }
-        double getScholarship() { 
-            return scholarship; 
-        }
+        static int getObjectCount() { return objectCount; }
+        int getId() { return id; }   
+        string getName() { return n; }
+        string getSurname() { return s; }
+        int getAge() { return age; }
+        double getScholarship() { return scholarship; }
 
 
         string toString() {
