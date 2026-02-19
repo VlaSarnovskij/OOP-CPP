@@ -25,14 +25,6 @@ class Student {
         int age;
         double scholarship;
 
-        void init(string name, string surname, int age, double scholarship){
-            setName(name);
-            setSurname(surname);
-            setAge(age);
-            setScholarship(scholarship); 
-            id = ++lastId;
-            ++objectCount;
-        }
     public:
         // Constructors
         Student(string name, string surname, int age, double scholarship) {
@@ -47,6 +39,17 @@ class Student {
             --objectCount;
         }
 
+    private:
+        void init(string name, string surname, int age, double scholarship){
+            setName(name);
+            setSurname(surname);
+            setAge(age);
+            setScholarship(scholarship); 
+            id = ++lastId;
+            ++objectCount;
+        }
+        
+    public:
         // Setters
         void setName(string name) { 
             this->name = name;
